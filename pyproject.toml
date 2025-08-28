@@ -3,7 +3,7 @@ requires = ["setuptools>=61.0", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "taskflow-ml"
+name = "ml_take_home"
 version = "0.1.0"
 description = "YOLOv8 object detection service with incremental training and data collection"
 authors = [
@@ -29,11 +29,10 @@ dependencies = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/siripuramGanesh"
-Repository = "https://github.com/siripuramGanesh/ml_take_home"
+homepage = "https://github.com/siripuramGanesh"
+repository = "https://github.com/siripuramGanesh/ml_take_home"
 
 [tool.setuptools.packages.find]
 where = ["."]
 exclude = ["tests*"]
 
-[tool.setuptools]
