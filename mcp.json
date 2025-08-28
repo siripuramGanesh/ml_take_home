@@ -1,5 +1,5 @@
 {
-  "name": "TaskFlow-ML",
+  "name": "ml_take_home",
   "version": "0.1.0",
   "description": "YOLOv8 object detection service with incremental training and data collection",
   "author": "Ganesh Siripuram",

@@ -1,9 +1,7 @@
 from pydantic import BaseModel, model_validator
 from typing import Dict, List, Optional
 
-# -------------------
-# Collector endpoint
-# -------------------
+# Collector
 class DataCollectorRequest(BaseModel):
     image_npy_b64: Optional[str] = None
     image_bytes_b64: Optional[str] = None
@@ -19,9 +17,7 @@ class DataCollectorRequest(BaseModel):
 class Ok(BaseModel):
     ok: bool
 
-# -------------------
-# Inference endpoint
-# -------------------
+# Inference
 class DetectionBox(BaseModel):
     x1: int
     y1: int

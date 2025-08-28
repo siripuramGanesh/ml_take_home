@@ -6,33 +6,26 @@ build-backend = "setuptools.build_meta"
 name = "ml_take_home"
 version = "0.1.0"
 description = "YOLOv8 object detection service with incremental training and data collection"
-authors = [
-    {name = "Ganesh Siripuram"}
-]
+authors = [{name = "Ganesh Siripuram"}]
 readme = "README.md"
 requires-python = ">=3.10"
-license = {text = "MIT"}
-keywords = ["yolo", "object-detection", "fastapi", "ml", "async"]
-
 dependencies = [
     "fastapi>=0.100",
-    "uvicorn>=0.23",
+    "uvicorn>=0.22",
+    "numpy>=1.24",
+    "opencv-python>=4.7",
     "torch>=2.1",
-    "torchvision>=0.16",
-    "ultralytics>=8.0.114",
-    "timm>=0.9.2",
-    "numpy>=1.25",
-    "opencv-python>=4.8",
-    "pillow>=10.0",
-    "click>=8.2",
-    "httpx>=0.26",
+    "timm>=0.9",
+    "ultralytics>=8.0",
+    "httpx>=0.24",
+    "click>=8.1",
+    "pydantic>=2.0",
+    "openai>=0.27"  # optional, remove if using mocked LLM
 ]
-
-[project.urls]
-homepage = "https://github.com/siripuramGanesh"
-repository = "https://github.com/siripuramGanesh/ml_take_home"
 
 [tool.setuptools.packages.find]
 where = ["."]
-exclude = ["tests*"]
+include = ["app*", "client*"]
 
+[project.scripts]
+mlcli = "cli:main"

@@ -2,6 +2,11 @@ import numpy as np
 import torch
 from torch.optim.lr_scheduler import CyclicLR
 from ultralytics import YOLO
+from pathlib import Path
+
+CHECKPOINT_DIR = Path("checkpoints")
+CHECKPOINT_DIR.mkdir(exist_ok=True)
+CHECKPOINT_FILE = CHECKPOINT_DIR / "detector.pt"
 
 class Detector:
     def __init__(self, weights: str | None = None, device: str = "cuda" if torch.cuda.is_available() else "cpu"):
@@ -19,6 +24,22 @@ class Detector:
             step_size_up=2000,
             cycle_momentum=False
         )
+
+        # Load checkpoint if exists
+        if CHECKPOINT_FILE.exists():
+            checkpoint = torch.load(CHECKPOINT_FILE, map_location=device)
+            self.model.model.load_state_dict(checkpoint["model_state"])
+            self.optimizer.load_state_dict(checkpoint["optimizer_state"])
+            self.scheduler.load_state_dict(checkpoint["scheduler_state"])
+            print("[Detector] Loaded checkpoint.")
+
+    def save_checkpoint(self):
+        torch.save({
+            "model_state": self.model.model.state_dict(),
+            "optimizer_state": self.optimizer.state_dict(),
+            "scheduler_state": self.scheduler.state_dict()
+        }, CHECKPOINT_FILE)
+        print("[Detector] Checkpoint saved.")
 
     def predict(self, image: np.ndarray):
         res = self.model.predict(image, verbose=False)[0]
@@ -41,4 +62,5 @@ class Detector:
         loss.backward()
         self.optimizer.step()
         self.scheduler.step()
+        self.save_checkpoint()  # persist checkpoint
         return loss.item()
