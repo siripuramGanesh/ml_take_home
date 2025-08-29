@@ -3,29 +3,30 @@ requires = ["setuptools>=61.0", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "ml_take_home"
+name = "ml-takehome"
 version = "0.1.0"
-description = "YOLOv8 object detection service with incremental training and data collection"
-authors = [{name = "Ganesh Siripuram"}]
-readme = "README.md"
-requires-python = ">=3.10"
+description = "Production-ready inference and data collection pipeline"
+requires-python = ">=3.8"
 dependencies = [
-    "fastapi>=0.100",
-    "uvicorn>=0.22",
-    "numpy>=1.24",
-    "opencv-python>=4.7",
-    "torch>=2.1",
-    "timm>=0.9",
-    "ultralytics>=8.0",
-    "httpx>=0.24",
-    "click>=8.1",
-    "pydantic>=2.0",
-    "openai>=0.27"  # optional, remove if using mocked LLM
+    "fastapi>=0.104.0",
+    "uvicorn>=0.24.0",
+    "httpx>=0.25.0",
+    "numpy>=1.24.0",
+    "opencv-python>=4.8.0",
+    "ultralytics>=8.0.0",
+    "torch>=2.0.0",
+    "torchvision>=0.15.0",
+    "timm>=0.9.0",
+    "Pillow>=10.0.0",
+    "click>=8.1.0",
+    "python-multipart>=0.0.6",
+    "requests>=2.31.0",
+    "tqdm>=4.66.0"
 ]
 
-[tool.setuptools.packages.find]
-where = ["."]
-include = ["app*", "client*"]
-
 [project.scripts]
-mlcli = "cli:main"
+ml-takehome = "client.cli:cli"
+
+[tool.black]
+line-length = 88
+target-version = ['py38']

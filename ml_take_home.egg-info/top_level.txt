@@ -1,4 +1,0 @@
-app
-client
-data
-venv
