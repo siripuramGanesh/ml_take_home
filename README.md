@@ -17,11 +17,11 @@ pip install -r requirements.txt
 
 ```bash
 # Install from git
-pip install git+https://github.com/your-username/ml-takehome.git
+pip install git+https://github.com/your-username/ml_take_home.git
 
 # Or install locally
-git clone https://github.com/your-username/ml-takehome.git
-cd ml-takehome
+git clone https://github.com/your-username/ml_take_home.git
+cd ml_take_home
 pip install -e .
 
 # Download full COCO dataset (18GB+)
